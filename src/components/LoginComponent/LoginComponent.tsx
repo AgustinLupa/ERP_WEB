@@ -1,52 +1,39 @@
 import { FormEvent, useState } from "react";
 import './LoginComponent.css'
-import { instance } from "../../services/API";
+import {posting } from "../../services/API";
 
 
 
 export const LoginComponent = () =>{
-    
-    const [account, setAccount] = useState("");
-    const [password, setPassword] = useState("");
+   
+    const [formData, setFormData] = useState({username : "", password : "" })
     const [success, setSuccess] = useState("");
+
 
     const loginHandler = async (e: FormEvent<HTMLFormElement>) => {
         
         e.preventDefault();
 
         try{ 
-            const response = await instance.post("users/login", JSON.stringify({username: account, password: password}), 
-            { 
-                method: "post",
-                headers: {
-                'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-                'Content-Type': 'application/json',
-                "Access-Control-Allow-Origin": "*"
-                }
-            })
-            setSuccess(response.data);
+            posting(formData)
         } catch (err){
             console.error("Error trying to log up:", err);
-            console.log(err.response.data)
-            console.log(err.response.status)
-            console.log(err.response.header)
             //add a useEffect component for the unmatch account or password 
         }
-        
-        
-       
         console.log(success)
+        //mostrar el status 400 o 500 en el login en alguna parte
     };
     return (
         <form onSubmit={loginHandler}>
             <h2>Log In</h2>
             <label htmlFor="account">Tipe your name accouunt</label>
-            <input  type="text" id="account" autoComplete="off" onChange={(e) => setAccount(e.target.value)}>
-            </input>
-
+            <input  type="text" id="account" autoComplete="off" onChange={(e) =>
+                 setFormData({...formData, username: e.target.value })}/>
+           
             <label htmlFor="password">Password</label>
-            <input type="password" id="password"  onChange={(e) => setPassword(e.target.value)}>
-            </input>
+
+            <input type="password" id="password"  onChange={(e) =>
+                 setFormData({...formData, password : e.target.value})}/>
 
             <button type="submit" className="loginButton" > Start session</button>
             <div>
