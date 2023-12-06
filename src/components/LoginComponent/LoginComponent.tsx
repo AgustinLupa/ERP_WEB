@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import './LoginComponent.css'
-import {posting } from "../../services/API";
+import {posting} from "../../services/API";
 
 
 
@@ -16,6 +16,7 @@ export const LoginComponent = () =>{
 
         try{ 
             posting(formData)
+            setSuccess(response);
         } catch (err){
             console.error("Error trying to log up:", err);
             //add a useEffect component for the unmatch account or password 

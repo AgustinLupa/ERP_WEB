@@ -6,9 +6,8 @@ const instance = axios.create({
 
 
   const posting = async (params) => {
-
   
-    return await instance.post("users/login", JSON.stringify({params}), 
+    return await instance.post("users/login", JSON.stringify(params), 
       { 
         method: "post",
         headers: {
