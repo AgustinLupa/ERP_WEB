@@ -5,9 +5,11 @@ const instance = axios.create({
   });
 
 
-  const posting = async (params) => {
+  const posting = async (paramsURL, paramsBody ) => {
   
-    return await instance.post("users/login", JSON.stringify(params), 
+    // pasar por parametros la url para que el post sirva para mandar a distintas direcciones 
+
+    const result = await instance.post(paramsURL, JSON.stringify(paramsBody), 
       { 
         method: "post",
         headers: {
@@ -15,8 +17,9 @@ const instance = axios.create({
         'Content-Type': 'application/json'
         }
       })
-//pasar esto al post para api y mostrar el status 400 o 500 en el login en alguna parte
+    //pasar esto al post para api y mostrar el status 400 o 500 en el login en alguna parte
   .then((response) => response)
+  console.log(result)
 } 
 
 

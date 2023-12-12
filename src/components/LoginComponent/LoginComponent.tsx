@@ -15,8 +15,7 @@ export const LoginComponent = () =>{
         e.preventDefault();
 
         try{ 
-            posting(formData)
-            setSuccess(response);
+            posting("users/login", formData)
         } catch (err){
             console.error("Error trying to log up:", err);
             //add a useEffect component for the unmatch account or password 
