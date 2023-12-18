@@ -1,12 +1,12 @@
 import { FormEvent, useState } from "react";
 import {posting} from "../../services/API";
-import img from "../../assets/erp-icon.svg"
+import ReactLogo from "../../assets/erp-icon.svg";
 
 
 export const LoginComponent = () =>{
    
     const [formData, setFormData] = useState({username : "", password : "" })
-    const [success, setSuccess] = useState("");
+    const [success, setSuccess] = useState(""); // usarlo para deslogear y validador para el login
 
 
     const loginHandler = async (e: FormEvent<HTMLFormElement>) => {
@@ -28,7 +28,7 @@ export const LoginComponent = () =>{
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img
                     className="mx-auto h-20 w-auto"
-                    src={img}
+                    src={ReactLogo}
                     alt="Your Company"
                 />
                 <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
